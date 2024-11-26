@@ -50,7 +50,7 @@
   ],
   "peerDependencies": {
     "@remix-run/react": ">=2.0.0",
-    "react": ">=16.13.0"
+    "react": ">=16.0.0"
   },
   "devDependencies": {
     "@eslint/js": "9.15.0",
@@ -72,6 +72,6 @@
   },
   "dependencies": {
     "@ungap/with-resolvers": "^0.1.0",
-    "nanoid": "^5.0.8"
+    "nanoid": "^5.0.0"
   }
 }
