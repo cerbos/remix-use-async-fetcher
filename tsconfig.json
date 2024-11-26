@@ -1,0 +1,16 @@
+{
+  "extends": ["@tsconfig/strictest", "@tsconfig/node18"],
+  "include": ["src"],
+  "references": [],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "outDir": "build",
+    "rootDir": "src",
+    "tsBuildInfoFile": "build/remix-use-async-fetcher.tsbuildinfo",
+    "incremental": true,
+    "declaration": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "lib": ["es2023", "dom", "ESNext.Promise"]
+  }
+}

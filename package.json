@@ -1,0 +1,77 @@
+{
+  "name": "remix-use-async-fetcher",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Utilities to have an async fetch function in Remix apps",
+  "packageManager": "pnpm@9.14.2",
+  "engines": {
+    "node": ">= 18",
+    "pnpm": "9.14.2"
+  },
+  "scripts": {
+    "check": "pnpm lint && pnpm build && pnpm attw",
+    "build": "tsc -b",
+    "attw": "pnpx @arethetypeswrong/cli --profile esm-only --pack .",
+    "lint": "pnpm lint:prettier && pnpm lint:eslint",
+    "lint:eslint": "eslint --max-warnings=0 .",
+    "lint:prettier": "prettier --write .",
+    "postinstall": "pnpm build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cerbos/remix-use-async-fetcher.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/cerbos/remix-use-async-fetcher/issues"
+  },
+  "author": "Cerbos <help@cerbos.dev> (https://cerbos.dev)",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "default": "./build/index.js"
+    }
+  },
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*.d.ts",
+    "build/**/*.d.ts.map",
+    "build/**/*.js",
+    "build/**/*.js.map",
+    "src/**/*.ts"
+  ],
+  "keywords": [
+    "Cerbos",
+    "React",
+    "hooks",
+    "remix",
+    "use async fetcher",
+    "async fetcher"
+  ],
+  "peerDependencies": {
+    "@remix-run/react": ">=2.0.0",
+    "react": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.15.0",
+    "@remix-run/react": "2.15.0",
+    "@tsconfig/node18": "18.2.4",
+    "@tsconfig/strictest": "2.0.5",
+    "@types/react": "18.2.67",
+    "eslint": "9.15.0",
+    "eslint-plugin-react": "7.37.2",
+    "eslint-plugin-react-hooks": "5.0.0",
+    "globals": "15.12.0",
+    "prettier": "3.4.0",
+    "typescript": "5.7.2",
+    "typescript-eslint": "8.16.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "dependencies": {
+    "@ungap/with-resolvers": "^0.1.0",
+    "nanoid": "^5.0.8"
+  }
+}
