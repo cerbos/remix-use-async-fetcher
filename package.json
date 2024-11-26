@@ -1,7 +1,7 @@
 {
-  "name": "@cerbos/react",
+  "name": "remix-use-async-fetcher",
   "version": "0.0.1",
-  "description": "A collection of React hooks for interacting with Cerbos policy decision points",
+  "description": "Utilities to have an async fetch function in Remix apps",
   "packageManager": "pnpm@9.14.2",
   "engines": {
     "node": ">= 18",
