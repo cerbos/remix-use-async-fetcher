@@ -8,6 +8,7 @@
     "rootDir": "src",
     "tsBuildInfoFile": "build/react.tsbuildinfo",
     "incremental": true,
-    "declaration": true
+    "declaration": true,
+    "sourceMap": true
   }
 }

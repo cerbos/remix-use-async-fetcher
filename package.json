@@ -9,9 +9,9 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "lint": "pnpm lint:check:prettier && pnpm lint:check:eslint",
-    "lint:check:eslint": "eslint --max-warnings=0 .",
-    "lint:check:prettier": "prettier --check .",
+    "lint": "pnpm lint:prettier && pnpm lint:eslint",
+    "lint:eslint": "eslint --max-warnings=0 .",
+    "lint:prettier": "prettier --write .",
     "postinstall": "pnpm build"
   },
   "repository": {
