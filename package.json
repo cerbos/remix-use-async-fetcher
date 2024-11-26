@@ -1,5 +1,6 @@
 {
   "name": "remix-use-async-fetcher",
+  "type": "module",
   "version": "0.0.1",
   "description": "Utilities to have an async fetch function in Remix apps",
   "packageManager": "pnpm@9.14.2",
