@@ -5,7 +5,7 @@ import {
   ClientLoaderFunctionArgs,
   useFetcher,
 } from "@remix-run/react";
-import "./promise-with-resolvers";
+import "@ungap/with-resolvers";
 
 const asyncFetcherQueries: Map<string, PromiseWithResolvers<unknown>> = new Map<
   string,
@@ -14,7 +14,14 @@ const asyncFetcherQueries: Map<string, PromiseWithResolvers<unknown>> = new Map<
 
 const requestIdKey = "__request-id";
 
-export function useAsyncFetcher(): <T>(href: string) => Promise<T> {
+export interface UseAsyncFetcherReturn {
+  fetch: <T>(href: string) => Promise<T>;
+  submit: <T>(
+    ...args: Parameters<ReturnType<typeof useFetcher>["submit"]>
+  ) => Promise<T>;
+}
+
+export function useAsyncFetcher(): UseAsyncFetcherReturn {
   const originalFetcher = useFetcher();
 
   const fetch = useCallback(
@@ -34,7 +41,7 @@ export function useAsyncFetcher(): <T>(href: string) => Promise<T> {
         promiseWithResolvers as PromiseWithResolvers<unknown>,
       );
 
-      // initiate loader call
+      // initiate the call
       originalFetcher.load(href);
 
       // return the promise.
@@ -43,7 +50,40 @@ export function useAsyncFetcher(): <T>(href: string) => Promise<T> {
     [originalFetcher],
   );
 
-  return fetch;
+  const submit = useCallback(
+    async <T>(
+      ...args: Parameters<(typeof originalFetcher)["submit"]>
+    ): Promise<T> => {
+      const requestId = nanoid();
+
+      const submitTarget = args[0];
+      const options = args[1] || {};
+
+      let action = options.action || window.location.toString();
+
+      // append the request ID
+      action = action.includes("?")
+        ? `${action}&${requestIdKey}=${requestId}`
+        : `${action}?${requestIdKey}=${requestId}`;
+
+      const promiseWithResolvers = Promise.withResolvers<T>();
+
+      // store promiseWithResolvers keyed by request ID
+      asyncFetcherQueries.set(
+        requestId,
+        promiseWithResolvers as PromiseWithResolvers<unknown>,
+      );
+
+      // initiate the call
+      originalFetcher.submit(submitTarget, { ...options, action });
+
+      // return the promise.
+      return await promiseWithResolvers.promise;
+    },
+    [originalFetcher],
+  );
+
+  return { fetch, submit };
 }
 
 export async function handleServerForAsyncFetcher(

@@ -10,6 +10,7 @@
     "incremental": true,
     "declaration": true,
     "sourceMap": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "lib": ["es2023", "dom", "ESNext.Promise"]
   }
 }

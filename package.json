@@ -9,7 +9,9 @@
     "pnpm": "9.14.2"
   },
   "scripts": {
+    "check": "pnpm lint && pnpm build && pnpm attw",
     "build": "tsc -b",
+    "attw": "pnpx @arethetypeswrong/cli --profile esm-only --pack .",
     "lint": "pnpm lint:prettier && pnpm lint:eslint",
     "lint:eslint": "eslint --max-warnings=0 .",
     "lint:prettier": "prettier --write .",
@@ -27,10 +29,10 @@
   "license": "Apache-2.0",
   "exports": {
     ".": {
-      "default": "./build/index.js",
-      "types": "./build/index.d.ts"
+      "default": "./build/index.js"
     }
   },
+  "types": "./build/index.d.ts",
   "files": [
     "build/**/*.d.ts",
     "build/**/*.d.ts.map",
@@ -69,7 +71,7 @@
     "provenance": true
   },
   "dependencies": {
-    "@ungap/with-resolvers": "0.1.0",
-    "nanoid": "5.0.8"
+    "@ungap/with-resolvers": "^0.1.0",
+    "nanoid": "^5.0.8"
   }
 }
