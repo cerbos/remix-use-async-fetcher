@@ -133,7 +133,7 @@ export default function Index() {
               return (
                 <div
                   key={virtualRow.index}
-                  className={`${virtualRow.index % 2 ? "bg-gray-900" : ""} flex items-center justify-center`}
+                  className={`${virtualRow.index % 2 ? "dark:bg-gray-900 bg-gray-200" : ""} flex items-center justify-center`}
                   style={{
                     position: "absolute",
                     top: 0,
