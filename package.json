@@ -3,9 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "description": "Utilities to have an async fetch function in Remix apps",
+  "packageManager": "pnpm@9.13.2",
   "engines": {
     "node": ">= 18",
-    "pnpm": ">= 9"
+    "pnpm": "9.13.2"
   },
   "scripts": {
     "prepare": "tsc -b",
