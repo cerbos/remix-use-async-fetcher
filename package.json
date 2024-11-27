@@ -8,6 +8,7 @@
     "pnpm": ">= 9"
   },
   "scripts": {
+    "prepare": "tsc -b",
     "check": "pnpm lint && pnpm build && pnpm attw",
     "build": "tsc -b",
     "attw": "pnpx @arethetypeswrong/cli --profile esm-only --pack .",
