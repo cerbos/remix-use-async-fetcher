@@ -3,10 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "description": "Utilities to have an async fetch function in Remix apps",
-  "packageManager": "pnpm@9.14.2",
   "engines": {
     "node": ">= 18",
-    "pnpm": "9.14.2"
+    "pnpm": ">= 9"
   },
   "scripts": {
     "check": "pnpm lint && pnpm build && pnpm attw",
