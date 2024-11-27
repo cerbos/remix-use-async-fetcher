@@ -14,8 +14,7 @@
     "attw": "pnpx @arethetypeswrong/cli --profile esm-only --pack .",
     "lint": "pnpm lint:prettier && pnpm lint:eslint",
     "lint:eslint": "eslint --max-warnings=0 .",
-    "lint:prettier": "prettier --write .",
-    
+    "lint:prettier": "prettier --write ."
   },
   "repository": {
     "type": "git",
