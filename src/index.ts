@@ -20,14 +20,12 @@ export interface UseAsyncFetcherReturn {
   ) => Promise<T>;
 }
 
-
-
 export function useAsyncFetcher(): UseAsyncFetcherReturn {
   const originalFetcher = useFetcher();
 
   const fetch = useCallback(
     async <T>(href: string): Promise<T> => {
-      const requestId = crypto.randomUUID()
+      const requestId = crypto.randomUUID();
 
       // append the request ID
       href = href.includes("?")
@@ -51,12 +49,11 @@ export function useAsyncFetcher(): UseAsyncFetcherReturn {
     [originalFetcher],
   );
 
-
   const submit = useCallback(
     async <T>(
       ...args: Parameters<(typeof originalFetcher)["submit"]>
     ): Promise<T> => {
-      const requestId = crypto.randomUUID()
+      const requestId = crypto.randomUUID();
 
       const submitTarget = args[0];
       const options = args[1] || {};
@@ -97,10 +94,10 @@ export function isAsyncFetcherRequest(request: Request): boolean {
   return !!getRequestId(request);
 }
 /**
- * Use this function directly as clientLoader or clientAction or call 
+ * Use this function directly as clientLoader or clientAction or call
  * it from your own clientLoader or clientAction. This function will
  * handle the serverLoader or serverAction and resolve the promise returned
- * from `useAsyncFetcher().fetch(...)` or `useAsyncFetcher().submit(...)` 
+ * from `useAsyncFetcher().fetch(...)` or `useAsyncFetcher().submit(...)`
  * with the server data.
  */
 export async function handleServerFnResponse(

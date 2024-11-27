@@ -8,13 +8,14 @@
     "node": ">= 18"
   },
   "scripts": {
-    "prepare": "tsc -b",
-    "check": "pnpm lint && pnpm build && pnpm attw",
-    "build": "tsc -b",
     "attw": "pnpx @arethetypeswrong/cli --profile esm-only --pack .",
+    "build": "tsc -b",
+    "check": "pnpm lint && pnpm build && pnpm attw",
+    "demo": "pnpm install &&  cd demo && pnpm install && pnpm dev",
     "lint": "pnpm lint:prettier && pnpm lint:eslint",
     "lint:eslint": "eslint --max-warnings=0 .",
-    "lint:prettier": "prettier --write ."
+    "lint:prettier": "prettier --write .",
+    "prepare": "tsc -b"
   },
   "repository": {
     "type": "git",
