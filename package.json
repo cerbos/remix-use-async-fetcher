@@ -7,6 +7,9 @@
   "engines": {
     "node": ">= 18"
   },
+  "stackblitz": {
+    "startCommand": "pnpm demo"
+  },
   "scripts": {
     "attw": "pnpx @arethetypeswrong/cli --profile esm-only --pack .",
     "build": "tsc -b",

@@ -85,7 +85,7 @@ export default function Index() {
           action: "/app/todos",
           encType: "application/json",
           method: "POST",
-        }
+        },
       );
     },
     onSuccess: (_, variables) => {
@@ -101,7 +101,7 @@ export default function Index() {
                   content: variables.content,
                 },
               ];
-            }
+            },
           );
           break;
 
@@ -110,7 +110,7 @@ export default function Index() {
             { queryKey: ["todos"] },
             (prev) => {
               return (prev ?? []).filter((todo) => todo.id !== variables.id);
-            }
+            },
           );
           break;
       }
@@ -132,7 +132,7 @@ export default function Index() {
               inputRef.current.value = "";
             }
           },
-        }
+        },
       );
     }
   };
