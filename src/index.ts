@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { useCallback } from "react";
 import {
   ClientActionFunctionArgs,
@@ -26,7 +25,7 @@ export function useAsyncFetcher(): UseAsyncFetcherReturn {
 
   const fetch = useCallback(
     async <T>(href: string): Promise<T> => {
-      const requestId = nanoid();
+      const requestId = crypto.randomUUID();
 
       // append the request ID
       href = href.includes("?")
@@ -54,7 +53,7 @@ export function useAsyncFetcher(): UseAsyncFetcherReturn {
     async <T>(
       ...args: Parameters<(typeof originalFetcher)["submit"]>
     ): Promise<T> => {
-      const requestId = nanoid();
+      const requestId = crypto.randomUUID();
 
       const submitTarget = args[0];
       const options = args[1] || {};
@@ -86,15 +85,29 @@ export function useAsyncFetcher(): UseAsyncFetcherReturn {
   return { fetch, submit };
 }
 
-export async function handleServerForAsyncFetcher(
+function getRequestId(request: Request): string | null {
+  const { searchParams } = new URL(request.url);
+  return searchParams.get(requestIdKey);
+}
+
+export function isAsyncFetcherRequest(request: Request): boolean {
+  return !!getRequestId(request);
+}
+/**
+ * Use this function directly as clientLoader or clientAction or call
+ * it from your own clientLoader or clientAction. This function will
+ * handle the serverLoader or serverAction and resolve the promise returned
+ * from `useAsyncFetcher().fetch(...)` or `useAsyncFetcher().submit(...)`
+ * with the server data.
+ */
+export async function handleServerFnResponse(
   args: ClientLoaderFunctionArgs | ClientActionFunctionArgs,
 ): Promise<unknown> {
   const { request } = args;
   const serverFn =
     "serverLoader" in args ? args.serverLoader : args.serverAction;
 
-  const { searchParams } = new URL(request.url);
-  const requestId = searchParams.get(requestIdKey);
+  const requestId = getRequestId(request);
 
   try {
     // call the server action/loader
