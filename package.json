@@ -15,7 +15,7 @@
     "lint": "pnpm lint:prettier && pnpm lint:eslint",
     "lint:eslint": "eslint --max-warnings=0 .",
     "lint:prettier": "prettier --write .",
-    "postinstall": "pnpm build"
+    
   },
   "repository": {
     "type": "git",
