@@ -20,7 +20,7 @@
     "isbot": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "remix-use-async-fetcher": "github:cerbos/remix-use-async-fetcher"
+    "remix-use-async-fetcher": "link:.."
   },
   "devDependencies": {
     "@remix-run/dev": "^2.15.0",

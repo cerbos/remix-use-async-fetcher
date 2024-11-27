@@ -5,8 +5,7 @@
   "description": "Utilities to have an async fetch function in Remix apps",
   "packageManager": "pnpm@9.13.2",
   "engines": {
-    "node": ">= 18",
-    "pnpm": "9.13.2"
+    "node": ">= 18"
   },
   "scripts": {
     "prepare": "tsc -b",
@@ -71,7 +70,6 @@
     "provenance": true
   },
   "dependencies": {
-    "@ungap/with-resolvers": "^0.1.0",
-    "nanoid": "^5.0.8"
+    "@ungap/with-resolvers": "^0.1.0"
   }
 }

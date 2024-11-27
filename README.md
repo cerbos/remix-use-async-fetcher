@@ -61,7 +61,7 @@ For the server functions where you implemented `clientLoader` and/or `clientActi
 
 
 ### Demo
-run `npm install & npm run dev` in the demo folder to see how this is used with `@tanstack/react-query`
+run `pnpm install & pnpm dev` in the demo folder to see how this is used with `@tanstack/react-query`
 
 
 ### A note about `__request-id`

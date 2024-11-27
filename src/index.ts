@@ -1,4 +1,3 @@
-import { customAlphabet } from "nanoid";
 import { useCallback } from "react";
 import {
   ClientActionFunctionArgs,
@@ -22,18 +21,13 @@ export interface UseAsyncFetcherReturn {
 }
 
 
-const alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const generate = customAlphabet(alphabet, 12)
-const generateRequestId = () => {
-  return generate()
-}
 
 export function useAsyncFetcher(): UseAsyncFetcherReturn {
   const originalFetcher = useFetcher();
 
   const fetch = useCallback(
     async <T>(href: string): Promise<T> => {
-      const requestId = generateRequestId();
+      const requestId = crypto.randomUUID()
 
       // append the request ID
       href = href.includes("?")
@@ -57,11 +51,12 @@ export function useAsyncFetcher(): UseAsyncFetcherReturn {
     [originalFetcher],
   );
 
+
   const submit = useCallback(
     async <T>(
       ...args: Parameters<(typeof originalFetcher)["submit"]>
     ): Promise<T> => {
-      const requestId = generateRequestId();
+      const requestId = crypto.randomUUID()
 
       const submitTarget = args[0];
       const options = args[1] || {};
