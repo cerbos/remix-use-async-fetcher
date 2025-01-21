@@ -133,15 +133,17 @@ export async function handleServerFnResponse(
     // Return the data to ensure Remix's
     // data hooks function as expected.
     return serverResponse;
-  } catch (e) {
-    if (!requestId) {
-      // rethrow when there is no Request ID
+  } catch (error) {
+    if (!requestId || (error instanceof Response && error.status >= 300 && error.status < 400)) {
+      // Rethrow when there is no Request ID
       // to ensure Remix's data hooks function
       // as expected.
-      throw e;
+
+      // Also rethrow when we encounter a redirect response
+      throw error;
     }
 
-    asyncFetcherQueries.get(requestId)?.reject(e);
+    asyncFetcherQueries.get(requestId)?.reject(error);
     asyncFetcherQueries.delete(requestId);
     return null;
   }
